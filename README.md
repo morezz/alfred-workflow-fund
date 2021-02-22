@@ -1,9 +1,13 @@
 ## alfred-workflow-fund
 An alfred-workflow of query fund for [Alfred 3][alfred] in python
-Support Alfred 3 on MacOS 10.7+ (Python 2.7).
-Power by [Alfred-Workflow][alfred-workflow]
+
 [![Latest Version][shield-version]][pypi]
 [![Supported Python Versions][shield-pyversions]][pypi]
+
+Support Alfred 3 on MacOS 10.7+ (Python 2.7).
+
+Power by [Alfred-Workflow][alfred-workflow]
+
 ## Features
 Save fund code, query fund use the saved code
 ## Installation
