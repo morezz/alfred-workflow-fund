@@ -1,11 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import sys
-import requests
+import argparse
 import json
 import re
-import argparse
-from workflow import Workflow, ICON_INFO, ICON_WARNING, web
+import sys
+
+import requests
+
+from workflow import Workflow, ICON_INFO, ICON_WARNING
 
 
 def check(code):
@@ -87,7 +89,7 @@ def main(wf):
         return 0
 
     ####################################################################
-    # View/filter fund result
+    # View / filter fund result
     ####################################################################
     query = args.query
     # Retrieve fund from cache if available and no more than 60
