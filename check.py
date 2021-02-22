@@ -81,7 +81,8 @@ def main(wf):
 
     fund_code_list = wf.settings.get('fund_code_key', None)
     if not fund_code_list:  # Fund code has not yet been set
-        wf.add_item('No fund code key set.', 'Please use fundsave to set your fund code.', valid=False, icon=ICON_WARNING)
+        wf.add_item('No fund code key set.', 'Please use fundsave to set your fund code.', valid=False,
+                    icon=ICON_WARNING)
         wf.send_feedback()
         return 0
 
@@ -113,7 +114,7 @@ def main(wf):
     for data in fund_result:
         # result = "Name: {}, Fund Unit net worth: {}, Or fall: {}".format(data["name"], data["dwjz"], data["gszzl"])
         main_title = "{}, {}".format(data["name"], data["fundcode"])
-        sub_title = "{}, {}, {}%, {}".format(data["dwjz"], data["gsz"], data["gszzl"], data["gztime"])
+        sub_title = "{}, {}%, {}, {}".format(data["gsz"], data["gszzl"], data["dwjz"], data["gztime"])
         wf.add_item(title=main_title, subtitle=sub_title, valid=True, icon=ICON_INFO)
 
     wf.send_feedback()
