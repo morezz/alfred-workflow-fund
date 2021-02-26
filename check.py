@@ -113,8 +113,9 @@ def main(wf):
     # the list of results for Alfred
     for data in fund_result:
         # result = "Name: {}, Fund Unit net worth: {}, Or fall: {}".format(data["name"], data["dwjz"], data["gszzl"])
-        main_title = "{}, {}".format(data["name"], data["fundcode"])
-        sub_title = "{}, {}%, {}, {}".format(data["gsz"], data["gszzl"], data["dwjz"], data["gztime"])
+        main_title = "{}, {}, {}%".format(data["name"], data["gsz"], data["gszzl"])
+        sub_title = "{}, {}%, {}, {}, {}".format(data["gsz"], data["gszzl"], data["dwjz"], data["fundcode"],
+                                                 data["gztime"])
         wf.add_item(title=main_title, subtitle=sub_title, valid=True, icon=ICON_INFO)
 
     wf.send_feedback()
