@@ -51,6 +51,7 @@ def search_key_for_fund(data):
 def main(wf):
     reload(sys)  # reload 才能调用 setdefaultencoding 方法
     sys.setdefaultencoding('utf-8')  # 设置 'utf-8'
+    import requests  # Imported from ./lib
 
     # build argument parser to parse script args and collect their
     # values
@@ -140,5 +141,5 @@ def main(wf):
 
 
 if __name__ == u"__main__":
-    wf = Workflow()
+    wf = Workflow(libraries=['./lib'])
     sys.exit(wf.run(main))
