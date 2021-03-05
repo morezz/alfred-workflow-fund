@@ -16,15 +16,15 @@ Save fund code, query fund use the saved code
 ## Usage
 ### Save fund code
 - Open Alfred
-- Input keyword "fundsave" + Tab, then input the fund code
+- Input keyword "fs" + Tab, then input the fund code
 - Press "Enter"
 ### Delete fund code
 - Open Alfred
-- Input keyword "funddel" + Tab, then input the fund code
+- Input keyword "fd" + Tab, then input the fund code
 - Press "Enter"
 ### Query fund
 - Open Alfred
-- Input keyword "fund" + Tab, if input the fund code, then show the selected fund, or show all saved fund
+- Input keyword "fq" + Tab, if input the fund code, then show the selected fund, or show all saved fund
 
 [alfred-workflow]: https://github.com/deanishe/alfred-workflow
 [alfred]: http://www.alfredapp.com/

@@ -108,7 +108,7 @@ def main(wf):
 
     fund_code_list = wf.settings.get('fund_code_key', None)
     if not fund_code_list:  # Fund code has not yet been set
-        wf.add_item('No fund code key set.', 'Please use fundsave to set your fund code.', valid=False,
+        wf.add_item('No fund code key set.', 'Please use "fs + Tab + $code" to set your fund code.', valid=False,
                     icon=ICON_WARNING)
         wf.send_feedback()
         return 0
