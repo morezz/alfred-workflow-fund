@@ -55,23 +55,50 @@ def main(wf):
     # build argument parser to parse script args and collect their
     # values
     parser = argparse.ArgumentParser()
-    # add an optional (nargs='?') --setfundcode argument and save its
-    # value to 'fundcode' (dest). This will be called from a separate "Run Script"
-    parser.add_argument('--setfundcode', dest='fundcode', nargs='?', default=None)
+    # add an optional (nargs='?') --savefundcode argument and save its
+    # value to 'savefundcode' (dest). This will be called from a separate "Run Script"
+    parser.add_argument('--savefundcode', dest='savefundcode', nargs='?', default=None)
+    parser.add_argument('--delfundcode', dest='deletefundcode', nargs='?', default=None)
     # add an optional query and save it to 'query'
     parser.add_argument('query', nargs='?', default=None)
     # parse the script's arguments
     args = parser.parse_args(wf.args)
+
+    fund_result = []
+
+    def wrapper():
+        """`cached_data` can only take a bare callable (no args),
+        so we need to wrap callables needing arguments in a function
+        that needs none.
+        """
+        for code in fund_code_list:
+            fund_result.append(check(code))
+        return fund_result
 
     ####################################################################
     # Save the fund code
     ####################################################################
 
     # decide what to do based on arguments
-    if args.fundcode:  # Script was passed fund code
+    if args.savefundcode:  # Script was passed fund code
         # save the key
         fund_code_list = wf.settings.get('fund_code_key', [])
-        fund_code_list.append(args.fundcode)
+        fund_code_list.append(args.savefundcode)
+        wf.cached_data('funds', wrapper, max_age=10)
+        wf.settings['fund_code_key'] = list(set(fund_code_list))
+        return 0  # 0 means script exited cleanly
+
+    ####################################################################
+    # Delete the fund code
+    ####################################################################
+
+    # decide what to do based on arguments
+    if args.deletefundcode:  # Script was passed fund code
+        # delete the key
+        fund_code_list = wf.settings.get('fund_code_key', [])
+        fund_code_list.remove(args.deletefundcode)
+        if fund_code_list:
+            wf.cached_data('funds', wrapper, max_age=10)
         wf.settings['fund_code_key'] = list(set(fund_code_list))
         return 0  # 0 means script exited cleanly
 
@@ -92,16 +119,6 @@ def main(wf):
     query = args.query
     # Retrieve fund from cache if available and no more than 60
     # seconds old
-    fund_result = []
-
-    def wrapper():
-        """`cached_data` can only take a bare callable (no args),
-        so we need to wrap callables needing arguments in a function
-        that needs none.
-        """
-        for code in fund_code_list:
-            fund_result.append(check(code))
-        return fund_result
 
     fund_result = wf.cached_data('funds', wrapper, max_age=10)
 

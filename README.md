@@ -18,6 +18,10 @@ Save fund code, query fund use the saved code
 - Open Alfred
 - Input keyword "fundsave" + Tab, then input the fund code
 - Press "Enter"
+### Delete fund code
+- Open Alfred
+- Input keyword "funddel" + Tab, then input the fund code
+- Press "Enter"
 ### Query fund
 - Open Alfred
 - Input keyword "fund" + Tab, if input the fund code, then show the selected fund, or show all saved fund
